@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\ExerciseController;
+use App\Http\Controllers\Api\MoviesController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
@@ -27,6 +28,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('exercises/{exercise}', [ExerciseController::class,'show']); //Mostrar
     Route::post('exercises/update/{id}', [ExerciseController::class,'update']); //Editar
 
+    Route::post('movies',[MoviesController::class,'store']);
+    Route::get('movies',[MoviesController::class,'index']);
     Route::get('role-list', [RoleController::class, 'getList']);
     Route::get('role-permissions/{id}', [PermissionController::class, 'getRolePermissions']);
     Route::put('/role-permissions', [PermissionController::class, 'updateRolePermissions']);
