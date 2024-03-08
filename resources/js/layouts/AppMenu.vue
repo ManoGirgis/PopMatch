@@ -42,6 +42,12 @@ const model = ref([
         items: [
             { label: 'Posts', icon: 'pi pi-fw pi-id-card', to: '/admin/posts', permision: 'post-list' }
         ]
+    },
+    {
+        label: 'Movies',
+        items: [
+            { label: 'Show Movies', icon: 'pi pi-fw pi-id-card', to: '/admin/movies', permision: 'post-list' }
+        ]
     }
 ]);
 </script>

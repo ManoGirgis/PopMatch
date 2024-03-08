@@ -55,7 +55,7 @@
                                          @click="updateOrdering('title')">
                                         <div class="font-medium text-uppercase"
                                              :class="{ 'font-bold text-blue-600': orderColumn === 'title' }">
-                                            Name
+                                            Username
                                         </div>
                                         <div class="select-none">
                                 <span :class="{
@@ -118,7 +118,7 @@
                                     {{ post.id }}
                                 </td>
                                 <td class="px-6 py-4 text-sm">
-                                    {{ post.name }}
+                                    {{ post.username }}
                                 </td>
                                 <td class="px-6 py-4 text-sm">
                                     {{ post.email }}

@@ -9,15 +9,14 @@
  
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                <strong></strong>
+                The <strong>Movie</strong> is uploaded succesfully
             </div>
  
  
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                <strong></strong>
+                The <strong>Movie</strong> wasn't uploaded (Please check your inputs)
             </div>
-                   {{ movie }}
             <form @submit.prevent="addmovie" >
                 <div class="form-group mb-2">
                     <label>Title</label><span class="text-danger"> *</span>
@@ -70,7 +69,7 @@
  
  
             </form>
- 
+            <Toast />
  
         </div>
     </div>
@@ -80,15 +79,17 @@
  <script setup>
  import axios from "axios";
     import { ref, onMounted } from "vue";
-
+    import { useToast } from "primevue/usetoast";
+const toast = useToast();
     const movie = ref({})
 
   function addmovie(){
 //console.log("send");
 axios.post('/api/movies',movie.value)
 .then(response =>{
-    console.log(response)
-    //movie.value ={}
+    //console.log(response)
+    toast.add({ severity: 'success', summary: 'Success Message', detail: 'The movie was uploaded', life: 3000 });
+    movie.value ={}
 
 })
 .catch( error =>(

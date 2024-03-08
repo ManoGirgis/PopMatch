@@ -5,10 +5,23 @@
                 <div class="card-body">
                     <form @submit.prevent="submitForm">
                         <div class="mb-3">
-                            <label for="user-title" class="form-label">Name</label>
-                            <input v-model="user.name" id="user-title" type="text" class="form-control">
+                            <label for="user-title" class="form-label">username</label>
+                            <input v-model="user.username" id="user-title" type="text" class="form-control">
                             <div class="text-danger mt-1">
-                                {{ errors.name }}
+                                {{ errors.username }}
+                            </div>
+                            <div class="text-danger mt-1">
+                                <div v-for="message in validationErrors?.username">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="user-title" class="form-label">Firstname</label>
+                            <input v-model="user.username" id="user-title" type="text" class="form-control">
+                            <div class="text-danger mt-1">
+                                {{ errors.firstname }}
                             </div>
                             <div class="text-danger mt-1">
                                 <div v-for="message in validationErrors?.name">
@@ -16,6 +29,33 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="user-title" class="form-label">Lastname</label>
+                            <input v-model="user.username" id="user-title" type="text" class="form-control">
+                            <div class="text-danger mt-1">
+                                {{ errors.lastname }}
+                            </div>
+                            <div class="text-danger mt-1">
+                                <div v-for="message in validationErrors?.name">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="user-title" class="form-label">Address</label>
+                            <input v-model="user.username" id="user-title" type="text" class="form-control">
+                            <div class="text-danger mt-1">
+                                {{ errors.address }}
+                            </div>
+                            <div class="text-danger mt-1">
+                                <div v-for="message in validationErrors?.name">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input v-model="user.email" id="email" type="email" class="form-control">
