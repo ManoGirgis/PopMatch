@@ -4,9 +4,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between pb-2 mb-2">
-                        <h5 class="card-title">Todas las tareas</h5>
+                        <h5 class="card-title">all movies</h5>
                         <div>
-                            <!--router-link :to= "{name: 'movies.create'}" class="btn btn-success">Nueva Tarea</router-link-->
+                            <router-link :to= "{name: 'movie.create'}" class="btn btn-success">Nueva Peli</router-link>
                         </div>
                     </div>
  

@@ -230,6 +230,16 @@ export default [
                         path: '',
                         component: () => import('../views/admin/movies/list.vue'),
                         meta: { breadCrumb: 'View movies' }
+                    },
+                    {
+                        name: 'movie.create',
+                        path: 'create',
+                        component: () => import('../views/admin/movies/create.vue'),
+                        meta: {
+                            breadCrumb: 'Add movie',
+                            linked: false,
+                        }
+
                     }
                 ]
             },
