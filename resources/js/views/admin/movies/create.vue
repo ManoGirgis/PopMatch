@@ -55,7 +55,18 @@
                     <input class="form-control" type="datetime-local" name="date_open" v-model="movie.release_date"/>
                 </div>
  
-                <button type="submit" class="btn btn-primary mt-4 mb-4">Añadir Tarea</button>
+                <div class="form-group mb-2">
+                    <label>language</label><span class="text-danger"> *</span>
+                    <input type="text" class="form-control" placeholder="Language" v-model="movie.language">
+                </div>
+
+                <div class="form-group mb-2">
+                    <label>Country</label><span class="text-danger"> *</span>
+                    <input type="text" class="form-control" placeholder="Country" v-model="movie.country">
+                </div>
+
+
+                <button type="submit" class="btn btn-primary mt-4 mb-4">Add movie</button>
  
  
             </form>
@@ -75,9 +86,11 @@
   function addmovie(){
 //console.log("send");
 axios.post('/api/movies',movie.value)
-.then(response =>(
+.then(response =>{
     console.log(response)
-))
+    //movie.value ={}
+
+})
 .catch( error =>(
     console.log(error)
 ))
