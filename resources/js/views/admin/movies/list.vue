@@ -17,8 +17,8 @@
                                 <th width="50" class="text-center">#</th>
                                 <th>Name</th>
                                 <th>description</th>
-                                <th>date_open</th>
-                                <th>date_close</th>
+                                <th>release_date</th>
+                                <th>genre</th>
                                 <th class="text-center" width="200">Acciones</th>
                             </tr>
                         </thead>
@@ -27,10 +27,10 @@
                                 <td class="text-center">{{movie.id}}</td>
                                 <td>{{movie.title}}</td>
                                 <td>{{movie.description}}</td>
-                                <td>{{movie.genre}}</td>
-                                <th>{{movie.duration}}</th>
+                                <td>{{movie.release_date}}</td>
+                                <th>{{movie.genre}}</th>
                                 <td class="text-center">
-                                    <a class="btn btn-warning mr-1">Edit</a>
+                                    <router-link :to= "{name: 'movie.edit', params:{id: movie.id}}" class="btn btn-warning mr-1">Edit</router-link>
                                     <button class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>

@@ -5,13 +5,13 @@
                 <div class="card-body">
                     <form @submit.prevent="submitForm">
                         <div class="mb-3">
-                            <label for="user-title" class="form-label">username</label>
-                            <input v-model="user.username" id="user-title" type="text" class="form-control">
+                            <label for="user-title" class="form-label">title</label>
+                            <input v-model="movie.title" id="user-title" type="text" class="form-control">
                             <div class="text-danger mt-1">
-                                {{ errors.username }}
+                                {{ errors.title }}
                             </div>
                             <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.username">
+                                <div v-for="message in validationErrors?.title">
                                     {{ message }}
                                 </div>
                             </div>
@@ -19,7 +19,7 @@
 
                         <div class="mb-3">
                             <label for="user-title" class="form-label">Firstname</label>
-                            <input v-model="user.firstname" id="user-title" type="text" class="form-control">
+                            <input v-model="movie.title" id="user-title" type="text" class="form-control">
                             <div class="text-danger mt-1">
                                 {{ errors.firstname }}
                             </div>
@@ -32,7 +32,7 @@
 
                         <div class="mb-3">
                             <label for="user-title" class="form-label">Lastname</label>
-                            <input v-model="user.lastname" id="user-title" type="text" class="form-control">
+                            <input v-model="movie.title" id="user-title" type="text" class="form-control">
                             <div class="text-danger mt-1">
                                 {{ errors.lastname }}
                             </div>
@@ -45,12 +45,12 @@
 
                         <div class="mb-3">
                             <label for="user-title" class="form-label">Address</label>
-                            <input v-model="user.address" id="user-title" type="text" class="form-control">
+                            <input v-model="movie.title" id="user-title" type="text" class="form-control">
                             <div class="text-danger mt-1">
                                 {{ errors.address }}
                             </div>
                             <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.address">
+                                <div v-for="message in validationErrors?.name">
                                     {{ message }}
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input v-model="user.email" id="email" type="email" class="form-control">
+                            <input v-model="movie.email" id="email" type="email" class="form-control">
                             <div class="text-danger mt-1">
                                 {{ errors.email }}
                             </div>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input v-model="user.password" id="password" type="password" class="form-control">
+                            <input v-model="movie.password" id="password" type="password" class="form-control">
                             <div class="text-danger mt-1">
                                 {{ errors.password }}
                             </div>
@@ -85,7 +85,7 @@
                             <label for="user-category" class="form-label">
                                 Role
                             </label>
-                            <v-select multiple  v-model="user.role_id" :options="roleList" :reduce="role => role.id" label="name" class="form-control" />
+                            <v-select multiple  v-model="movie.role_id" :options="roleList" :reduce="role => role.id" label="name" class="form-control" />
                             <div class="text-danger mt-1">
                                 {{ errors.role_id }}
                             </div>
@@ -125,9 +125,7 @@
 
     // Define a validation schema
     const schema = {
-        firstname: 'required',
-        lastname: 'required',
-        username: 'required',
+        name: 'required',
         email: 'required',
         password: 'min:8',
     }
@@ -135,17 +133,13 @@
     // Create a form context with the validation schema
     const { validate, errors, resetForm } = useForm({ validationSchema: schema })
     // Define actual fields for validation
-    const { value: firstname } = useField('firstname', null, { initialValue: '' });
-    const { value: lastname } = useField('lastname', null, { initialValue: '' });
-    const { value: username } = useField('username', null, { initialValue: '' });
+    const { value: name } = useField('name', null, { initialValue: '' });
     const { value: email } = useField('email', null, { initialValue: '' });
     const { value: password } = useField('password', null, { initialValue: '' });
     const { value: role_id } = useField('role_id', null, { initialValue: '', label: 'role' });
 
     const user = reactive({
-        firstname,
-        lastname,
-        username,
+        name,
         email,
         password,
         role_id,
@@ -161,11 +155,9 @@
     })
     // https://vuejs.org/api/reactivity-core.html#watcheffect
     watchEffect(() => {
-        user.id = postData.value.id
-        user.firstname = postData.value.firstname
-        user.lastname = postData.value.lastname
-        user.username = postData.value.username
-        user.email = postData.value.email
-        user.role_id = postData.value.role_id
+        movie.id = postData.value.id
+        movie.name = postData.value.name
+        movie.email = postData.value.email
+        movie.role_id = postData.value.role_id
     })
 </script>

@@ -38,4 +38,25 @@ class MoviesController extends Controller
         return $movie;
     }
     
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'rating' => 'required',
+            'genre' => 'required'
+        ]);
+        $movie = Movie::find($id);
+        $movie->update($request->all());
+        $movie->update([
+            'title'=>'updated movie'
+        ]);
+        $response = [
+            'success' => true,
+            'message' => 'Movie updated successfully',
+            'data' => $movie
+        ];
+    
+    }
 }

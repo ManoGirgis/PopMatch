@@ -239,8 +239,13 @@ export default [
                             breadCrumb: 'Add movie',
                             linked: false,
                         }
-
-                    }
+                    },
+                    {
+                        name: 'movie.edit',
+                        path: 'movie/edit/:id',
+                        component: () => import('../views/admin/movies/Edit.vue'),
+                        meta: { breadCrumb: 'Movie Edit' }
+                    },
                 ]
             },
 

@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::post('forget-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('forget.password.post');
 Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.reset');
 
+
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);
     Route::apiResource('posts', PostController::class);
@@ -28,6 +29,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('exercises/{exercise}', [ExerciseController::class,'show']); //Mostrar
     Route::post('exercises/update/{id}', [ExerciseController::class,'update']); //Editar
 
+    Route::put('movies/{id}',[MoviesController::class,'update']);
     Route::post('movies',[MoviesController::class,'store']);
     Route::get('movies',[MoviesController::class,'index']);
     Route::get('role-list', [RoleController::class, 'getList']);
