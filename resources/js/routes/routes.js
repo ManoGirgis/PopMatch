@@ -25,7 +25,7 @@ function requireLogin(to, from, next) {
 function guest(to, from, next) {
     let isLogin;
     isLogin = !!store.state.auth.authenticated;
-
+    
     if (isLogin) {
         next('/')
     } else {
@@ -244,7 +244,8 @@ export default [
                         name: 'movie.edit',
                         path: 'movie/edit/:id',
                         component: () => import('../views/admin/movies/Edit.vue'),
-                        meta: { breadCrumb: 'Movie Edit' }
+                        meta: { breadCrumb: 'Movie Edit', 
+                        linked: false,}
                     },
                 ]
             },
