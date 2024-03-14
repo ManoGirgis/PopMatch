@@ -18,20 +18,23 @@ Route::post('forget-password', [ForgotPasswordController::class, 'sendResetLinkE
 Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.reset');
 
 
-Route::group(['middleware' => 'auth:sanctum'], function() {
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('posts', PostController::class);
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('roles', RoleController::class);
+    //Route::apiResource('movies', RoleController::class);
     //Route::apiResource('exercises', ExerciseController::class);
-    Route::post('exercises/', [ExerciseController::class,'store']); //Guardar
-    Route::get('exercises', [ExerciseController::class,'index']); //Listar
-    Route::get('exercises/{exercise}', [ExerciseController::class,'show']); //Mostrar
-    Route::post('exercises/update/{id}', [ExerciseController::class,'update']); //Editar
-
-    Route::put('movies/{id}',[MoviesController::class,'update']);
-    Route::post('movies',[MoviesController::class,'store']);
-    Route::get('movies',[MoviesController::class,'index']);
+    Route::post('exercises/', [ExerciseController::class, 'store']); //Guardar
+    Route::get('exercises', [ExerciseController::class, 'index']); //Listar
+    Route::get('exercises/{exercise}', [ExerciseController::class, 'show']); //Mostrar
+    Route::post('exercises/update/{id}', [ExerciseController::class, 'update']); //Editar
+   
+    Route::delete('movies/{id}', [MoviesController::class, 'destroy']);
+    Route::get('movies/{id}', [MoviesController::class, 'show']);
+    Route::put('movies/{id}', [MoviesController::class, 'update']);
+    Route::post('movies', [MoviesController::class, 'store']);
+    Route::get('movies', [MoviesController::class, 'index']);
     Route::get('role-list', [RoleController::class, 'getList']);
     Route::get('role-permissions/{id}', [PermissionController::class, 'getRolePermissions']);
     Route::put('/role-permissions', [PermissionController::class, 'updateRolePermissions']);
@@ -40,7 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/user', [ProfileController::class, 'user']);
     Route::put('/user', [ProfileController::class, 'update']);
 
-    Route::get('abilities', function(Request $request) {
+    Route::get('abilities', function (Request $request) {
         return $request->user()->roles()->with('permissions')
             ->get()
             ->pluck('permissions')

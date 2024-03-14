@@ -4,9 +4,10 @@
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
                     <form @submit.prevent="submitForm">
+                        
                         <div class="mb-3">
-                            <label for="user-title" class="form-label">title</label>
-                            <input v-model="movie.title" id="user-title" type="text" class="form-control">
+                            <label for="user-title" class="form-label">Title</label>
+                            <input v-model="movies.title" id="user-title" type="text" class="form-control">
                             <div class="text-danger mt-1">
                                 {{ errors.title }}
                             </div>
@@ -18,79 +19,38 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="user-title" class="form-label">Firstname</label>
-                            <input v-model="movie.title" id="user-title" type="text" class="form-control">
+                            <label for="user-title" class="form-label">description</label>
+                            <textarea v-model="movies.description" id="user-title" type="text" class="form-control"></textarea>
                             <div class="text-danger mt-1">
-                                {{ errors.firstname }}
+                                {{ errors.description }}
                             </div>
                             <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.name">
+                                <div v-for="message in validationErrors?.description">
                                     {{ message }}
                                 </div>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label for="user-title" class="form-label">Lastname</label>
-                            <input v-model="movie.title" id="user-title" type="text" class="form-control">
+                            <label for="user-title" class="form-label">genre</label>
+                            <input v-model="movies.genre" id="user-title" type="text" class="form-control">
                             <div class="text-danger mt-1">
-                                {{ errors.lastname }}
+                                {{ errors.genre }}
                             </div>
                             <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.name">
+                                <div v-for="message in validationErrors?.genre">
                                     {{ message }}
                                 </div>
                             </div>
                         </div>
-
                         <div class="mb-3">
-                            <label for="user-title" class="form-label">Address</label>
-                            <input v-model="movie.title" id="user-title" type="text" class="form-control">
+                            <label for="email" class="form-label">duration</label>
+                            <input v-model="movies.duration" id="email" type="text" class="form-control" pattern="([01]?[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])">
                             <div class="text-danger mt-1">
-                                {{ errors.address }}
-                            </div>
-                            <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.name">
-                                    {{ message }}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input v-model="movie.email" id="email" type="email" class="form-control">
-                            <div class="text-danger mt-1">
-                                {{ errors.email }}
+                                {{ errors.duration }}
                             </div>
                             <div class="text-danger mt-1">
                                 <div v-for="message in validationErrors?.email">
-                                    {{ message }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input v-model="movie.password" id="password" type="password" class="form-control">
-                            <div class="text-danger mt-1">
-                                {{ errors.password }}
-                            </div>
-                            <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.password">
-                                    {{ message }}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Role -->
-                        <div class="mb-3">
-                            <label for="user-category" class="form-label">
-                                Role
-                            </label>
-                            <v-select multiple  v-model="movie.role_id" :options="roleList" :reduce="role => role.id" label="name" class="form-control" />
-                            <div class="text-danger mt-1">
-                                {{ errors.role_id }}
-                            </div>
-                            <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.role_id">
                                     {{ message }}
                                 </div>
                             </div>
@@ -112,11 +72,9 @@
 <script setup>
     import { onMounted, reactive, watchEffect } from "vue";
     import { useRoute } from "vue-router";
-    import useRoles from "@/composables/roles";
-    import useUsers from "@/composables/users";
+    import useMovies from "@/composables/movies";
 
-    const { roleList, getRoleList } = useRoles();
-    const { updateUser, getUser, user: postData, validationErrors, isLoading } = useUsers();
+    const { updateMovie, getMovie, movie: postData, validationErrors, isLoading } = useMovies();
 
     import { useForm, useField, defineRule } from "vee-validate";
     import { required, min } from "@/validation/rules"
@@ -125,39 +83,44 @@
 
     // Define a validation schema
     const schema = {
-        name: 'required',
-        email: 'required',
-        password: 'min:8',
+        id: 'required',
+        title: 'required',
+        description: 'required',
+        genre: 'required',
+        duration: 'required',
     }
 
     // Create a form context with the validation schema
     const { validate, errors, resetForm } = useForm({ validationSchema: schema })
     // Define actual fields for validation
-    const { value: name } = useField('name', null, { initialValue: '' });
-    const { value: email } = useField('email', null, { initialValue: '' });
-    const { value: password } = useField('password', null, { initialValue: '' });
-    const { value: role_id } = useField('role_id', null, { initialValue: '', label: 'role' });
+    const { value: id } = useField('id', null, { initialValue: '' });
+    const { value: title } = useField('title', null, { initialValue: '' });
+    const { value: description } = useField('description', null, { initialValue: '' });
+    const { value: genre } = useField('genre', null, { initialValue: '' });
+    const { value: duration } = useField('duration', null, { initialValue: '', label: 'role' });
 
-    const user = reactive({
-        name,
-        email,
-        password,
-        role_id,
+    const movies = reactive({
+        id,
+        title,
+        description,
+        genre,
+        duration,
     })
 
     const route = useRoute()
     function submitForm() {
-        validate().then(form => { if (form.valid) updateUser(user) })
+        validate().then(form => { if (form.valid) updateMovie(movies) })
     }
     onMounted(() => {
-        getUser(route.params.id)
-        getRoleList()
+        getMovie(route.params.id)
+      // console.log(route.params.id)
     })
     // https://vuejs.org/api/reactivity-core.html#watcheffect
     watchEffect(() => {
-        movie.id = postData.value.id
-        movie.name = postData.value.name
-        movie.email = postData.value.email
-        movie.role_id = postData.value.role_id
+        movies.id = postData.value.id 
+        movies.title = postData.value.title
+        movies.description = postData.value.description
+        movies.genre = postData.value.genre
+        movies.duration=postData.value.duration
     })
 </script>
