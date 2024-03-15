@@ -63,7 +63,7 @@ class MoviesController extends Controller
         //$this->authorize('movie-delete');
         $movie = Movie::find($id);
         $movie->delete();
-        return response()->noContent();
+        return 1;
     } 
 
 }

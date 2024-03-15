@@ -89,7 +89,7 @@ export default function useMovies() {
             .finally(() => isLoading.value = false)
     }
 
-    const deleteMovie = async (id) => {
+    const deleteMovie = async (id, index) => {
 
 console.log("delete"+ id)
 
@@ -108,8 +108,9 @@ console.log("delete"+ id)
                 if (result.isConfirmed) {
                     axios.delete('/api/movies/' + id)
                         .then(response => {
-                            getMovie()
-                            router.push({ name: 'movies.index' })
+                            //getMovie()
+                            //router.push({ name: 'movies.index' })
+                            movies.value.splice(index, 1)
                             swal({
                                 icon: 'success',
                                 title: 'Movie deleted successfully'

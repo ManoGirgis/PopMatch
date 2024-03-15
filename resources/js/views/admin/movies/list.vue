@@ -23,7 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="movie in movies">
+                            <tr v-for="(movie, index) in movies">
                                 <td class="text-center">{{ movie.id }}</td>
                                 <td>{{ movie.title }}</td>
                                 <td>{{ movie.description }}</td>
@@ -32,7 +32,7 @@
                                 <td class="text-center">
                                     <router-link :to="{ name: 'movie.edit', params: { id: movie.id } }"
                                         class="badge bg-warning">Edit</router-link>
-                                    <a href="#" @click.prevent="deleteMovie(movie.id)"
+                                    <a href="#" @click.prevent="deleteMovie(movie.id, index)"
                                         class="ms-2 badge bg-danger">Delete</a>
                                 </td>
                             </tr>
