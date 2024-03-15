@@ -33,8 +33,8 @@ const model = ref([
     {
         label: 'Ejercicios',
         items: [
-            { label: 'Ejercicios', icon: 'pi pi-fw pi-id-card', to: '/admin/exercises', permision: 'exercise-list' },
-            { label: 'Categorias', icon: 'pi pi-fw pi-id-card', to: '/admin/categories', permision: 'category-list' }
+            { label: 'Ejercicios', icon: 'pi pi-fw pi-id-card', to: '/admin/exercises', permision: 'exercise-list' }
+           
         ]
     },
     {
@@ -46,9 +46,10 @@ const model = ref([
     {
         label: 'Movies',
         items: [
-            { label: 'Show Movies', icon: 'pi pi-fw pi-id-card', to: '/admin/movies', permision: 'post-list' }
-        ]
-    }
+            { label: 'Show Movies', icon: 'pi pi-fw pi-id-card', to: '/admin/movies', permision: 'post-list' },
+            { label: 'Categories', icon: 'pi pi-fw pi-id-card', to: '/admin/categories', permision: 'category-list' }
+         ]
+        }
 ]);
 </script>
 

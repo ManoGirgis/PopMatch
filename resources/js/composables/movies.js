@@ -91,8 +91,6 @@ export default function useMovies() {
 
     const deleteMovie = async (id, index) => {
 
-console.log("delete"+ id)
-
         swal({
             title: 'Are you sure?',
             text: 'You won\'t be able to revert this action!',
