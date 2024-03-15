@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_cat_prefrences', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreignkey('category_id')->references('id')->on('categories');
+            $table->foreignkey('user_id')->references('id')->on('users');
         });
     }
 

@@ -29,7 +29,6 @@ class MoviesController extends Controller
             'success' => true,
             'message' => 'Movie created successfully',
             'data' => $movie
-
         ];
         return response()->json($response);
     }
@@ -43,8 +42,6 @@ class MoviesController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required',
-            'rating' => 'required',
             'genre' => 'required'
         ]);
         $movie = Movie::find($id);
@@ -59,4 +56,14 @@ class MoviesController extends Controller
         ];
     
     }
+
+    public function destroy($id)
+    {
+        
+        //$this->authorize('movie-delete');
+        $movie = Movie::find($id);
+        $movie->delete();
+        return response()->noContent();
+    } 
+
 }
