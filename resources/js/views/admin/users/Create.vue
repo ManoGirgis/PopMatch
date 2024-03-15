@@ -5,13 +5,13 @@
                 <div class="card-body">
                     <form @submit.prevent="submitForm">
                         <div class="mb-3">
-                            <label for="post-title" class="form-label">Name</label>
-                            <input v-model="post.name" id="post-title" type="text" class="form-control">
+                            <label for="post-title" class="form-label">Firstname</label>
+                            <input v-model="post.firstname" id="post-title" type="text" class="form-control">
                             <div class="text-danger mt-1">
-                                {{ errors.name }}
+                                {{ errors.firstname }}
                             </div>
                             <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.name">
+                                <div v-for="message in validationErrors?.firstname">
                                     {{ message }}
                                 </div>
                             </div>
@@ -84,20 +84,20 @@
 
     // Define a validation schema
     const schema = {
-        name: 'required',
+        firstname: 'required',
         email: 'required',
         password: 'required|min:8',
     }
     // Create a form context with the validation schema
     const { validate, errors } = useForm({ validationSchema: schema })
     // Define actual fields for validation
-    const { value: name } = useField('name', null, { initialValue: '' });
+    const { value: firstname } = useField('firstname', null, { initialValue: '' });
     const { value: email } = useField('email', null, { initialValue: '' });
     const { value: password } = useField('password', null, { initialValue: '' });
     const { value: role_id } = useField('role_id', null, { initialValue: '', label: 'role' });
 
     const post = reactive({
-        name,
+        firstname,
         email,
         password,
         role_id,

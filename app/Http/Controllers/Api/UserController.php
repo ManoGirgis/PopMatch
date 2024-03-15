@@ -58,7 +58,7 @@ class UserController extends Controller
     {
         $role = Role::find($request->role_id);
         $user = new User();
-        $user->name = $request->name;
+        $user->firstname = $request->firstname;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 
