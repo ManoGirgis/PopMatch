@@ -10,7 +10,8 @@
                                 <!-- Email -->
                                 <div class="mb-3">
                                     <label for="firstname" class="form-label">{{ $t('Firstname') }}</label>
-                                    <input v-model="registerForm.firstname" id="firstname" type="text" class="form-control" autofocus>
+                                    <input v-model="registerForm.firstname" id="firstname" type="text"
+                                        class="form-control" autofocus>
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
                                         <div v-for="message in validationErrors?.firstname">
@@ -18,10 +19,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mb-3">
                                     <label for="lastname" class="form-label">{{ $t('Lastname') }}</label>
-                                    <input v-model="registerForm.lastname" id="lastname" type="text" class="form-control" autofocus>
+                                    <input v-model="registerForm.lastname" id="lastname" type="text"
+                                        class="form-control" autofocus>
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
                                         <div v-for="message in validationErrors?.lastname">
@@ -32,7 +34,8 @@
 
                                 <div class="mb-3">
                                     <label for="username" class="form-label">{{ $t('Username') }}</label>
-                                    <input v-model="registerForm.username" id="username" type="text" class="form-control" autofocus>
+                                    <input v-model="registerForm.username" id="username" type="text"
+                                        class="form-control" autofocus>
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
                                         <div v-for="message in validationErrors?.username">
@@ -40,10 +43,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mb-3">
                                     <label for="address" class="form-label">{{ $t('address') }}</label>
-                                    <input v-model="registerForm.address" id="address" type="text" class="form-control" autofocus>
+                                    <input v-model="registerForm.address" id="address" type="text" class="form-control"
+                                        autofocus>
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
                                         <div v-for="message in validationErrors?.address">
@@ -54,7 +58,8 @@
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">{{ $t('Email') }}</label>
-                                    <input v-model="registerForm.email" id="email" type="email" class="form-control" autocomplete="username">
+                                    <input v-model="registerForm.email" id="email" type="email" class="form-control"
+                                        autocomplete="username">
                                     <!-- Validation Errors -->
                                     <div class="text-danger mt-1">
                                         <div v-for="message in validationErrors?.email">
@@ -67,7 +72,8 @@
                                     <label for="password" class="form-label">
                                         {{ $t('Password') }}
                                     </label>
-                                    <input v-model="registerForm.password" id="password" type="password" class="form-control" autocomplete="current-password">
+                                    <input v-model="registerForm.password" id="password" type="password"
+                                        class="form-control" autocomplete="current-password">
                                     <!-- Validation Errors -->
                                     <div class="text-danger-600 mt-1">
                                         <div v-for="message in validationErrors?.password">
@@ -79,7 +85,8 @@
                                     <label for="password_confirmation" class="form-label">
                                         {{ $t('confirm_password') }}
                                     </label>
-                                    <input v-model="registerForm.password_confirmation" id="password_confirmation" type="password" class="form-control" autocomplete="current-password">
+                                    <input v-model="registerForm.password_confirmation" id="password_confirmation"
+                                        type="password" class="form-control" autocomplete="current-password">
                                     <!-- Validation Errors -->
                                     <div class="text-danger-600 mt-1">
                                         <div v-for="message in validationErrors?.password_confirmation">
@@ -90,7 +97,8 @@
 
                                 <!-- Buttons -->
                                 <div class="flex items-center justify-end mt-4">
-                                    <button class="btn btn-primary" :class="{ 'opacity-25': processing }" :disabled="processing">
+                                    <button class="btn btn-primary" :class="{ 'opacity-25': processing }"
+                                        :disabled="processing">
                                         {{ $t('register') }}
                                     </button>
                                 </div>
