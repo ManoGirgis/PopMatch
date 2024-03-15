@@ -24,7 +24,7 @@
                                 {{ errors.firstname }}
                             </div>
                             <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.name">
+                                <div v-for="message in validationErrors?.firstname">
                                     {{ message }}
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                 {{ errors.lastname }}
                             </div>
                             <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.name">
+                                <div v-for="message in validationErrors?.lastname">
                                     {{ message }}
                                 </div>
                             </div>
@@ -128,6 +128,7 @@
         firstname: 'required',
         lastname: 'required',
         username: 'required',
+        address: 'required',
         email: 'required',
         password: 'min:8',
     }
@@ -138,6 +139,7 @@
     const { value: firstname } = useField('firstname', null, { initialValue: '' });
     const { value: lastname } = useField('lastname', null, { initialValue: '' });
     const { value: username } = useField('username', null, { initialValue: '' });
+    const { value: address } = useField('address', null, { initialValue: '' });
     const { value: email } = useField('email', null, { initialValue: '' });
     const { value: password } = useField('password', null, { initialValue: '' });
     const { value: role_id } = useField('role_id', null, { initialValue: '', label: 'role' });
@@ -148,6 +150,7 @@
         username,
         email,
         password,
+        address,
         role_id,
     })
 
@@ -165,6 +168,7 @@
         user.firstname = postData.value.firstname
         user.lastname = postData.value.lastname
         user.username = postData.value.username
+        user.address = postData.value.address
         user.email = postData.value.email
         user.role_id = postData.value.role_id
     })

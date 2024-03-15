@@ -6,17 +6,56 @@
         <div class="card-body">
             <form @submit.prevent="submitForm">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" v-model="profile.name" class="form-control" id="name">
+                    <label for="name" class="form-label">Firstname</label>
+                    <input type="text" v-model="profile.firstname" class="form-control" id="name">
                     <div class="text-danger mt-1">
-                        {{ errors.name }}
+                        {{ errors.firstname }}
                     </div>
                     <div class="text-danger mt-1">
-                        <div v-for="message in validationErrors?.name">
+                        <div v-for="message in validationErrors?.firstname">
                             {{ message }}
                         </div>
                     </div>
                 </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Lastname</label>
+                    <input type="text" v-model="profile.lastname" class="form-control" id="name">
+                    <div class="text-danger mt-1">
+                        {{ errors.lastname }}
+                    </div>
+                    <div class="text-danger mt-1">
+                        <div v-for="message in validationErrors?.lastname">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">Username</label>
+                    <input type="text" v-model="profile.username" class="form-control" id="name">
+                    <div class="text-danger mt-1">
+                        {{ errors.username }}
+                    </div>
+                    <div class="text-danger mt-1">
+                        <div v-for="message in validationErrors?.username">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">address</label>
+                    <input type="text" v-model="profile.address" class="form-control" id="name">
+                    <div class="text-danger mt-1">
+                        {{ errors.address }}
+                    </div>
+                    <div class="text-danger mt-1">
+                        <div v-for="message in validationErrors?.address">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" v-model="profile.email" class="form-control" id="email">
@@ -51,17 +90,22 @@ defineRule('required', required)
 defineRule('min', min);
 
     const schema = {
-        name: 'required|min:3',
         email: 'required',
     }
     // Create a form context with the validation schema
     const { validate, errors } = useForm({ validationSchema: schema })
     // Define actual fields for validation
-    const { value: name } = useField('name', null, { initialValue: '' });
+    const { value: firstname } = useField('firstname', null, { initialValue: '' });
+    const { value: lastname } = useField('lastname', null, { initialValue: '' });
+    const { value: username } = useField('username', null, { initialValue: '' });
+    const { value: address } = useField('address', null, { initialValue: '' });
     const { value: email } = useField('email', null, { initialValue: '' });
     const { profile: profileData, getProfile, updateProfile, validationErrors, isLoading } = useProfile()
     const profile = reactive({
-        name,
+       firstname,
+       lastname,
+       username,
+       address,
         email
     })
     function submitForm() {
@@ -72,7 +116,10 @@ defineRule('min', min);
     })
 
     watchEffect(() => {
-        profile.name = profileData.value.name
+        profile.firstname = profileData.value.firstname
+        profile.lastname = profileData.value.lastname
+        profile.username = profileData.value.username
+        profile.address = profileData.value.address
         profile.email = profileData.value.email
     })
 </script>

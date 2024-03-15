@@ -5,7 +5,10 @@ import { ABILITY_TOKEN } from '@casl/vue';
 import store from '../store'
 
 let user = reactive({
-    name: '',
+    firstname: '',
+    lastname: '',
+    username: '',
+    address: '',
     email: '',
 })
 
@@ -34,7 +37,10 @@ export default function useAuth() {
     })
 
     const registerForm = reactive({
-        name: '',
+        firstname: '',
+        lastname: '',
+        username: '',
+        address: '',
         email: '',
         password: '',
         password_confirmation: ''
@@ -178,7 +184,7 @@ export default function useAuth() {
             })
     }
 
-    const getAbilities = async() => {
+    const getAbilities = async () => {
         await axios.get('/api/abilities')
             .then(response => {
                 const permissions = response.data
