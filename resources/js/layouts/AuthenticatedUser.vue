@@ -1,7 +1,7 @@
 <template>
     <div class="layout-wrapper" :class="containerClass">
         <app-topbar></app-topbar>
-        
+
         <div class="layout-main-container ">
             <!--Breadcrumb :home="home" :model="crumbs" class="mb-2">
                     <template #item="{ item, props }">
@@ -15,16 +15,28 @@
                             <span class="text-color">{{ item.label }}</span>
                         </a>
                     </template>
-                </Breadcrumb-->
+</Breadcrumb-->
             <div class="layout-main">
-                
+                <Card>
+                    <template #title>Simple Card</template>
+                    <template #content>
+                        <p class="m-1">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error
+                            repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa
+                            ratione quam perferendis esse, cupiditate neque
+                            quas!
+                        </p>
+                    </template>
+                </Card>
 
                 <Suspense>
-                <router-view></router-view>
+                    <router-view></router-view>
                 </Suspense>
             </div>
             <app-footer></app-footer>
         </div>
+
+
         <!--app-config></app-config-->
         <div class="layout-mask"></div>
     </div>
@@ -51,25 +63,25 @@ const home = ref({
 
 const crumbs = computed(() => {
     let pathArray = route.path.split("/")
-      pathArray.shift()
+    pathArray.shift()
 
-      let breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
-       
+    let breadcrumbs = pathArray.reduce((breadcrumbArray, path, idx) => {
+
         breadcrumbArray.push({
             route: breadcrumbArray[idx - 1]
-            ? "" + breadcrumbArray[idx - 1].route + "/" + path
-            : "/" + path,
-          label: route.matched[idx]?.meta.breadCrumb || path,
-          disabled: idx + 1 === pathArray.length || route.matched[idx]?.meta.linked===false,
+                ? "" + breadcrumbArray[idx - 1].route + "/" + path
+                : "/" + path,
+            label: route.matched[idx]?.meta.breadCrumb || path,
+            disabled: idx + 1 === pathArray.length || route.matched[idx]?.meta.linked === false,
         });
 
         return breadcrumbArray;
-      }, [])
-      return breadcrumbs;
-    });
+    }, [])
+    return breadcrumbs;
+});
 
 function selected(crumb) {
-     //Console.log(crumb);
+    //Console.log(crumb);
 }
 
 const { layoutConfig, layoutState, isSidebarActive } = useLayout();
@@ -126,7 +138,7 @@ const isOutsideClicked = (event) => {
 
 <style lang="scss">
 .p-breadcrumb .p-breadcrumb-list {
-    margin: 0 !important; 
+    margin: 0 !important;
     padding: 0;
     list-style-type: none;
     display: flex;
@@ -135,7 +147,7 @@ const isOutsideClicked = (event) => {
 }
 
 ol {
-    margin: 0 !important; 
+    margin: 0 !important;
     padding: 0;
     list-style-type: none;
     display: flex;

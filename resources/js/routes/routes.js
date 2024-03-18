@@ -22,6 +22,23 @@ function requireLogin(to, from, next) {
         next('/login')
     }
 }
+function requireAdmin(to, from, next) {
+    let isLogin = false;
+    isLogin = !!store.state.auth.authenticated;
+
+    if (isLogin) {
+        let role;
+        role = store.state.auth.user.roles;
+        if (role[0].name == 'admin') {
+           next()
+        }
+        else{
+            next('/app')
+        }
+    } else {
+        next('/login')
+    }
+}
 
 function guest(to, from, next) {
     let isLogin;
@@ -98,7 +115,7 @@ export default [
         // redirect: {
         //     name: 'admin.index'
         // },
-        beforeEnter: requireLogin,
+        beforeEnter: requireAdmin,
         meta: { breadCrumb: 'Dashboard' },
         children: [
             {
