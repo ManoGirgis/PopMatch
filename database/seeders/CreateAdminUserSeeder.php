@@ -47,6 +47,10 @@ class CreateAdminUserSeeder extends Seeder
         Category::create(['name' => 'Terror']);
         Category::create(['name' => 'Suspense']);
         Category::create(['name' => 'Thriller']);
+        Category::create(['name' => 'Western']);
+        Category::create(['name' => 'Drama']);
+        Category::create(['name' => 'Comedia']);
+        
 
         $permissions = Permission::pluck('id','id')->all();
 
