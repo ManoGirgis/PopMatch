@@ -25,7 +25,7 @@ function requireLogin(to, from, next) {
 
 function guest(to, from, next) {
     let isLogin;
-    isLogin = !!store.state.auth.authenticated;
+    isLogin = !!store.state.auth.authenticated;component: () => import('../views/home/mainPage.vue');
     
     if (isLogin) {
         next('/')
@@ -300,7 +300,7 @@ export default [
         path: '/app',
         component: AuthenticatedUser,
         beforeEnter: requireLogin,
-        meta: { breadCrumb: 'HomePage' },
+        meta: { breadCrumb: 'Home' },
        /* children: [
             {
                 name: 'admin.index',
