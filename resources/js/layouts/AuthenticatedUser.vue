@@ -1,12 +1,9 @@
 <template>
     <div class="layout-wrapper" :class="containerClass">
         <app-topbar></app-topbar>
-        <div class="layout-sidebar">
-            <app-sidebar></app-sidebar>
-        </div>
         
         <div class="layout-main-container ">
-            <Breadcrumb :home="home" :model="crumbs" class="mb-2">
+            <!--Breadcrumb :home="home" :model="crumbs" class="mb-2">
                     <template #item="{ item, props }">
                         <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
                             <a :href="href" v-bind="props.action" class="btn btn-link"   @click="navigate">
@@ -18,7 +15,7 @@
                             <span class="text-color">{{ item.label }}</span>
                         </a>
                     </template>
-                </Breadcrumb>
+                </Breadcrumb-->
             <div class="layout-main">
                 
 

@@ -2,6 +2,7 @@ import Cookies from 'js-cookie'
 import store from "../store";
 
 const AuthenticatedLayout = () => import('../layouts/Authenticated.vue')
+const AuthenticatedUser = () => import('../layouts/AuthenticatedUser.vue');
 const GuestLayout = () => import('../layouts/Guest.vue');
 
 const PostsIndex = () => import('../views/admin/posts/Index.vue');
@@ -44,6 +45,11 @@ export default [
                 path: '/',
                 name: 'home',
                 component: () => import('../views/home/index.vue'),
+            },
+            {       // need to be fixed
+                path: '/',
+                name: 'mainpage',
+                component: () => import('../views/home/mainPage.vue'),
             },
             {
                 path: 'posts',
@@ -289,6 +295,207 @@ export default [
                 meta: { breadCrumb: 'User Edit' }
             },
         ]
+    },
+    {
+        path: '/app',
+        component: AuthenticatedUser,
+        beforeEnter: requireLogin,
+        meta: { breadCrumb: 'HomePage' },
+       /* children: [
+            {
+                name: 'admin.index',
+                path: '',
+                component: () => import('../views/admin/index.vue'),
+                meta: { breadCrumb: 'Admin' }
+            },
+            {
+                name: 'profile.index',
+                path: 'profile',
+                component: () => import('../views/admin/profile/index.vue'),
+                meta: { breadCrumb: 'Profile' }
+            },
+            {
+                name: 'posts.index',
+                path: 'posts',
+                component: PostsIndex,
+                meta: { breadCrumb: 'Posts' }
+            },
+            {
+                name: 'posts.create',
+                path: 'posts/create',
+                component: PostsCreate,
+                meta: { breadCrumb: 'Add new post' }
+            },
+            {
+                name: 'posts.edit',
+                path: 'posts/edit/:id',
+                component: PostsEdit,
+                meta: { breadCrumb: 'Edit post' }
+            },
+            {
+                name: 'exercises',
+                path: 'exercises',
+                meta: { breadCrumb: 'Exercises' },
+                children: [
+                    {
+                        name: 'exercises.index',
+                        path: '',
+                        component: ExercisesIndex,
+                        meta: { breadCrumb: 'View' }
+                    },
+                    {
+                        name: 'exercises.create',
+                        path: 'create',
+                        component: ExercisesCreate,
+                        meta: {
+                            breadCrumb: 'Add new exercise',
+                            linked: false,
+                        }
+                    },
+                    {
+                        name: 'exercises.edit',
+                        path: 'edit/:id',
+                        component: ExercisesEdit,
+                        meta: {
+                            breadCrumb: 'Edit exercise',
+                            linked: false,
+                        }
+                    }
+                ]
+            },
+
+            {
+                name: 'categories',
+                path: 'categories',
+                meta: { breadCrumb: 'Categories' },
+                children: [
+                    {
+                        name: 'categories.index',
+                        path: '',
+                        component: () => import('../views/admin/categories/Index.vue'),
+                        meta: { breadCrumb: 'View category' }
+                    },
+                    {
+                        name: 'categories.create',
+                        path: 'create',
+                        component: () => import('../views/admin/categories/Create.vue'),
+                        meta: {
+                            breadCrumb: 'Add new category',
+                            linked: false,
+                        }
+                    },
+                    {
+                        name: 'categories.edit',
+                        path: 'edit/:id',
+                        component: () => import('../views/admin/categories/Edit.vue'),
+                        meta: {
+                            breadCrumb: 'Edit category',
+                            linked: false,
+                        }
+                    }
+                ]
+            },
+
+            {
+                name: 'permissions',
+                path: 'permissions',
+                meta: { breadCrumb: 'Permisos' },
+                children: [
+                    {
+                        name: 'permissions.index',
+                        path: '',
+                        component: () => import('../views/admin/permissions/Index.vue'),
+                        meta: { breadCrumb: 'Permissions' }
+                    },
+                    {
+                        name: 'permissions.create',
+                        path: 'create',
+                        component: () => import('../views/admin/permissions/Create.vue'),
+                        meta: {
+                            breadCrumb: 'Create Permission',
+                            linked: false,
+                        }
+                    },
+                    {
+                        name: 'permissions.edit',
+                        path: 'edit/:id',
+                        component: () => import('../views/admin/permissions/Edit.vue'),
+                        meta: {
+                            breadCrumb: 'Permission Edit',
+                            linked: false,
+                        }
+                    }
+                ]
+            },
+            {
+                name: 'movies',
+                path: 'movies',
+                meta: { breadCrumb: 'movies' },
+                children: [
+                    {
+                        name: 'movies.list',
+                        path: '',
+                        component: () => import('../views/admin/movies/list.vue'),
+                        meta: { breadCrumb: 'View movies' }
+                    },
+                    {
+                        name: 'movie.create',
+                        path: 'create',
+                        component: () => import('../views/admin/movies/create.vue'),
+                        meta: {
+                            breadCrumb: 'Add movie',
+                            linked: false,
+                        }
+                    },
+                    {
+                        name: 'movie.edit',
+                        path: 'movie/edit/:id',
+                        component: () => import('../views/admin/movies/Edit.vue'),
+                        meta: { breadCrumb: 'Movie Edit', 
+                        linked: false,}
+                    },
+                ]
+            },
+
+
+            //TODO Organizar rutas
+            {
+                name: 'roles.index',
+                path: 'roles',
+                component: () => import('../views/admin/roles/Index.vue'),
+                meta: { breadCrumb: 'Roles' }
+            },
+            {
+                name: 'roles.create',
+                path: 'roles/create',
+                component: () => import('../views/admin/roles/Create.vue'),
+                meta: { breadCrumb: 'Create Role' }
+            },
+            {
+                name: 'roles.edit',
+                path: 'roles/edit/:id',
+                component: () => import('../views/admin/roles/Edit.vue'),
+                meta: { breadCrumb: 'Role Edit' }
+            },
+            {
+                name: 'users.index',
+                path: 'users',
+                component: () => import('../views/admin/users/Index.vue'),
+                meta: { breadCrumb: 'Users' }
+            },
+            {
+                name: 'users.create',
+                path: 'users/create',
+                component: () => import('../views/admin/users/Create.vue'),
+                meta: { breadCrumb: 'Add New' }
+            },
+            {
+                name: 'users.edit',
+                path: 'users/edit/:id',
+                component: () => import('../views/admin/users/Edit.vue'),
+                meta: { breadCrumb: 'User Edit' }
+            },
+        ]*/
     },
     {
         path: "/:pathMatch(.*)*",
