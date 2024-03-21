@@ -24,6 +24,7 @@ class CreateAdminUserSeeder extends Seeder
             'username' => 'admin',
             'address' =>'popmatchcomp',
             'email' => 'admin@demo.com',
+            'sex' => 'M',
             'password' => bcrypt('12345678')
         ]);
 

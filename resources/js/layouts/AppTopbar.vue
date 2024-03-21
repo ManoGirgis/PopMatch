@@ -21,10 +21,15 @@
                 <i class="pi pi-user"></i>
                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
                     <li>
-                        <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Perfil</router-link>
+                        <router-link :to="{ path: '/admin' }" class="dropdown-item">Perfil</router-link>
                     </li>
                     <li>
                         <a class="dropdown-item" href="#">Preferencias</a>
+                    </li>
+                    
+                    <li v-if="user.roles[0].name == 'admin'">
+                        <p class="dropdown-item" @click="toadmin()">Dashboard</p>
+                        <!--a @click="console.log('PLEASE WORK')" :to="{path:'/admin'}" class="dropdown-item">Dashboard</a-->
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -49,11 +54,14 @@ import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from '../composables/layout';
 import { useStore } from 'vuex';
 import useAuth from "@/composables/auth";
+import { useRouter } from 'vue-router'
+
 
 const { onMenuToggle } = useLayout();
 const store = useStore();
 const user = computed(() => store.state.auth.user)
 const { processing, logout } = useAuth();
+const router = useRouter()
 
 const topbarMenuActive = ref(false);
 
@@ -67,7 +75,12 @@ const topbarMenuClasses = computed(() => {
     };
 });
 
+function toadmin()
+{
+console.log('to admin');
+router.push({name: 'admin.index'})
 
+}
 </script>
 
 <style lang="scss" scoped>

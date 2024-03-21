@@ -41,6 +41,7 @@ export default function useAuth() {
         lastname: '',
         username: '',
         address: '',
+        sexo: '',
         email: '',
         password: '',
         password_confirmation: ''

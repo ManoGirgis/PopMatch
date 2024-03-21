@@ -44,13 +44,13 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label">duration</label>
-                            <input v-model="movies.duration" id="email" type="text" class="form-control" pattern="([01]?[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])">
+                            <label for="duration" class="form-label">duration</label>
+                            <input v-model="movies.duration" id="duration" type="text" class="form-control" pattern="([01]?[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])">
                             <div class="text-danger mt-1">
                                 {{ errors.duration }}
                             </div>
                             <div class="text-danger mt-1">
-                                <div v-for="message in validationErrors?.email">
+                                <div v-for="message in validationErrors?.duration">
                                     {{ message }}
                                 </div>
                             </div>

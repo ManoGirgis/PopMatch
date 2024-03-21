@@ -57,6 +57,19 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="name" class="form-label">sex</label>
+                    <input type="text" v-model="profile.sex" class="form-control" id="name">
+                    <div class="text-danger mt-1">
+                        {{ errors.sex }}
+                    </div>
+                    <div class="text-danger mt-1">
+                        <div v-for="message in validationErrors?.sex">
+                            {{ message }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" v-model="profile.email" class="form-control" id="email">
                     <div class="text-danger mt-1">
@@ -99,6 +112,7 @@ defineRule('min', min);
     const { value: lastname } = useField('lastname', null, { initialValue: '' });
     const { value: username } = useField('username', null, { initialValue: '' });
     const { value: address } = useField('address', null, { initialValue: '' });
+    const { value: sex } = useField('address', null, { initialValue: '' });
     const { value: email } = useField('email', null, { initialValue: '' });
     const { profile: profileData, getProfile, updateProfile, validationErrors, isLoading } = useProfile()
     const profile = reactive({
@@ -106,6 +120,7 @@ defineRule('min', min);
        lastname,
        username,
        address,
+       sex,
         email
     })
     function submitForm() {
@@ -120,6 +135,7 @@ defineRule('min', min);
         profile.lastname = profileData.value.lastname
         profile.username = profileData.value.username
         profile.address = profileData.value.address
+        profile.sex = profileData.value.sex
         profile.email = profileData.value.email
     })
 </script>

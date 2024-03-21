@@ -120,4 +120,11 @@ class UserController extends Controller
 
         return response()->noContent();
     }
+
+    public function showranduser(){
+        
+        $user = User::inRandomOrder()->first();
+        return new UserResource($user);
+    
+    }
 }

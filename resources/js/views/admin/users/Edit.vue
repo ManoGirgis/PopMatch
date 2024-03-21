@@ -44,13 +44,26 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="user-title" class="form-label">Address</label>
-                            <input v-model="user.address" id="user-title" type="text" class="form-control">
+                            <label for="user-address" class="form-label">Address</label>
+                            <input v-model="user.address" id="user-address" type="text" class="form-control">
                             <div class="text-danger mt-1">
                                 {{ errors.address }}
                             </div>
                             <div class="text-danger mt-1">
                                 <div v-for="message in validationErrors?.address">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="user-title" class="form-label">sex</label>
+                            <input v-model="user.sex" id="user-title" type="text" class="form-control">
+                            <div class="text-danger mt-1">
+                                {{ errors.sex }}
+                            </div>
+                            <div class="text-danger mt-1">
+                                <div v-for="message in validationErrors?.sex">
                                     {{ message }}
                                 </div>
                             </div>
@@ -140,6 +153,7 @@
     const { value: lastname } = useField('lastname', null, { initialValue: '' });
     const { value: username } = useField('username', null, { initialValue: '' });
     const { value: address } = useField('address', null, { initialValue: '' });
+    const { value: sex } = useField('sex', null, { initialValue: '' });
     const { value: email } = useField('email', null, { initialValue: '' });
     const { value: password } = useField('password', null, { initialValue: '' });
     const { value: role_id } = useField('role_id', null, { initialValue: '', label: 'role' });
@@ -151,6 +165,7 @@
         email,
         password,
         address,
+        sex,
         role_id,
     })
 
@@ -169,6 +184,7 @@
         user.lastname = postData.value.lastname
         user.username = postData.value.username
         user.address = postData.value.address
+        user.sex = postData.value.sex
         user.email = postData.value.email
         user.role_id = postData.value.role_id
     })

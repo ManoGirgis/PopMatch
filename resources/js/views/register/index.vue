@@ -57,6 +57,18 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label for="sex" class="form-label">{{ $t('sex') }}</label>
+                                    <input v-model="registerForm.sex" id="sex" type="text" class="form-control"
+                                        autofocus>
+                                    <!-- Validation Errors -->
+                                    <div class="text-danger mt-1">
+                                        <div v-for="message in validationErrors?.sex">
+                                            {{ message }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="email" class="form-label">{{ $t('Email') }}</label>
                                     <input v-model="registerForm.email" id="email" type="email" class="form-control"
                                         autocomplete="username">

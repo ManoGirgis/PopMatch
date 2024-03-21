@@ -1,7 +1,6 @@
 <template>
     <div class="layout-wrapper" :class="containerClass">
         <app-topbar></app-topbar>
-
         <div class="layout-main-container ">
             <!--Breadcrumb :home="home" :model="crumbs" class="mb-2">
                     <template #item="{ item, props }">
@@ -18,14 +17,12 @@
 </Breadcrumb-->
             <div class="layout-main">
                 <Card>
-                    <template #title>Simple Card</template>
+                    <template #title>Rand User Name {{  }}</template>
                     <template #content>
                         <p class="m-1">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error
-                            repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa
-                            ratione quam perferendis esse, cupiditate neque
-                            quas!
+                            Data about User
                         </p>
+                        <img src="#"> User image
                     </template>
                 </Card>
 

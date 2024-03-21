@@ -5,8 +5,8 @@
                 <div class="card-body">
                     <form @submit.prevent="submitForm">
                         <div class="mb-3">
-                            <label for="post-title" class="form-label">Firstname</label>
-                            <input v-model="post.firstname" id="post-title" type="text" class="form-control">
+                            <label for="user-firstname" class="form-label">Firstname</label>
+                            <input v-model="post.firstname" id="user-firstname" type="text" class="form-control">
                             <div class="text-danger mt-1">
                                 {{ errors.firstname }}
                             </div>
@@ -16,6 +16,59 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="user-lastname" class="form-label">Lastname</label>
+                            <input v-model="post.lastname" id="user-lastname" type="text" class="form-control">
+                            <div class="text-danger mt-1">
+                                {{ errors.lastname }}
+                            </div>
+                            <div class="text-danger mt-1">
+                                <div v-for="message in validationErrors?.lastname">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="user-username" class="form-label">username</label>
+                            <input v-model="post.username" id="user-username" type="text" class="form-control">
+                            <div class="text-danger mt-1">
+                                {{ errors.username }}
+                            </div>
+                            <div class="text-danger mt-1">
+                                <div v-for="message in validationErrors?.username">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="user-address" class="form-label">address</label>
+                            <input v-model="post.address" id="user-address" type="text" class="form-control">
+                            <div class="text-danger mt-1">
+                                {{ errors.address }}
+                            </div>
+                            <div class="text-danger mt-1">
+                                <div v-for="message in validationErrors?.address">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="user-sex" class="form-label">sex</label>
+                            <input v-model="post.sex" id="user-sex" type="text" class="form-control">
+                            <div class="text-danger mt-1">
+                                {{ errors.sex }}
+                            </div>
+                            <div class="text-danger mt-1">
+                                <div v-for="message in validationErrors?.sex">
+                                    {{ message }}
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input v-model="post.email" id="email" type="email" class="form-control">
@@ -92,12 +145,20 @@
     const { validate, errors } = useForm({ validationSchema: schema })
     // Define actual fields for validation
     const { value: firstname } = useField('firstname', null, { initialValue: '' });
+    const { value: username } = useField('username', null, { initialValue: '' });
+    const { value: lastname } = useField('lastname', null, { initialValue: '' });
+    const { value: address } = useField('address', null, { initialValue: '' });
+    const { value: sex } = useField('sex', null, { initialValue: '' });
     const { value: email } = useField('email', null, { initialValue: '' });
     const { value: password } = useField('password', null, { initialValue: '' });
     const { value: role_id } = useField('role_id', null, { initialValue: '', label: 'role' });
 
     const post = reactive({
         firstname,
+        lastname,
+        username,
+        address,
+        sex,
         email,
         password,
         role_id,

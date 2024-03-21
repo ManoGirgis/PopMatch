@@ -113,7 +113,7 @@ export default [
         path: '/admin',
         component: AuthenticatedLayout,
         // redirect: {
-        //     name: 'admin.index'
+    //    name: 'admin.index',
         // },
         beforeEnter: requireAdmin,
         meta: { breadCrumb: 'Dashboard' },

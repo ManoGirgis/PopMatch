@@ -1,0 +1,3 @@
+Here is what i (Manuel) want to do in the short term(in a specific trello task):
+1- see why the users doesnt save the last name and the address
+2- save images too (including the image files)
